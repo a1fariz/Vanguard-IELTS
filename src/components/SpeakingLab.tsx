@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { Clock, CheckCircle2 } from 'lucide-react';
 import { SPEAKING_CUE_CARDS } from '../data/academicLessons';
 import type { SpeakingCueCard } from '../types';
 import { speakText, stopSpeaking } from '../utils/speech';
+import { AudioWaveform } from './AudioWaveform';
 
 interface SpeakingLabProps {
   onAddExp: (amount: number) => void;
@@ -214,21 +216,29 @@ export const SpeakingLab: React.FC<SpeakingLabProps> = ({ onAddExp, onSpeakingCo
               )}
 
               {phase === 'speaking' && (
-                <div className="p-4 bg-[#f4f2ee] rounded border border-[#21201c] text-center space-y-2">
-                  <span className="text-xs font-mono-code uppercase text-[#21201c] block font-semibold">
+                <div className="p-4 bg-[#f4f2ee] rounded-lg border border-[#21201c] text-center space-y-3">
+                  <span className="text-xs font-mono-code uppercase text-[#21201c] block font-semibold flex items-center justify-center gap-1.5">
+                    <Clock className="w-3.5 h-3.5 text-[#c97a3e]" />
                     Waktu Berbicara (Target 2 Menit):
                   </span>
-                  <div className="font-mono-code text-2xl font-bold text-[#21201c]">
+                  <div className="font-mono-code text-3xl font-bold text-[#21201c] tracking-wider">
                     {Math.floor(speakSeconds / 60)}:{speakSeconds % 60 < 10 ? '0' : ''}{speakSeconds % 60}
                   </div>
-                  <div className="text-[11px] text-[#6b675e]">
-                    {isRecording ? 'Mendengarkan suara mikrofon Anda...' : 'Bicaralah dengan lantang di depan perangkat.'}
+
+                  {/* Realtime Audio Waveform */}
+                  <AudioWaveform isRecording={isRecording} color="#21201c" />
+
+                  <div className="text-[11px] text-[#6b675e] flex items-center justify-center gap-1.5">
+                    <span className="w-2 h-2 rounded-full bg-[#8f3a3a] animate-ping" />
+                    <span>{isRecording ? 'Mikrofon aktif — silakan bicarakan poin-poin di atas' : 'Bicaralah dengan lantang di depan perangkat.'}</span>
                   </div>
+
                   <button
                     onClick={finishSpeaking}
-                    className="px-4 py-1.5 bg-[#21201c] text-[#faf9f7] text-xs font-medium rounded mx-auto"
+                    className="px-5 py-2 bg-[#21201c] hover:bg-[#383630] text-[#faf9f7] text-xs font-semibold rounded-md mx-auto flex items-center gap-1.5 shadow-2xs transition-all active:scale-95"
                   >
-                    Selesaikan Latihan Bicara
+                    <CheckCircle2 className="w-3.5 h-3.5 text-[#4ade80]" />
+                    <span>Selesaikan Latihan Bicara</span>
                   </button>
                 </div>
               )}

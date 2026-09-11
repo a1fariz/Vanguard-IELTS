@@ -266,7 +266,7 @@ export const WritingLab: React.FC<WritingLabProps> = ({ onAddExp, onEssayDrafted
             <div className="clean-surface p-5 space-y-3 text-xs">
               <span className="font-mono-code text-[#6b675e] uppercase block">Hasil Penilaian Diagnostik</span>
 
-              <div className="grid grid-cols-3 gap-2 text-center">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 text-center">
                 <div className="p-2.5 bg-[#f4f2ee] rounded border border-[#e8e6e1]">
                   <span className="text-[10px] text-[#6b675e] block">Kosakata (Lexical)</span>
                   <span className="text-sm font-bold text-[#21201c]">Band {analysisResult.lexicalScore}</span>

@@ -64,10 +64,10 @@ export const DailyConversationStudio: React.FC<DailyConversationStudioProps> = (
       </div>
 
       {/* Main Workspace Layout */}
-      <div className="clean-surface p-6 sm:p-8 space-y-6">
+      <div className="clean-surface p-4 sm:p-6 lg:p-8 space-y-5 sm:space-y-6">
         
         {/* Context Briefing Box */}
-        <div className="clean-surface-subtle p-4 rounded-lg space-y-2 text-xs">
+        <div className="clean-surface-subtle p-3.5 sm:p-4 rounded-lg space-y-2 text-xs">
           <div className="flex justify-between items-center">
             <span className="font-bold text-[#21201c] uppercase font-mono-code text-[11px]">Konteks Situasi:</span>
             <span className="font-mono-code text-[#c97a3e] font-semibold">{selectedScenario.level}</span>
@@ -79,30 +79,30 @@ export const DailyConversationStudio: React.FC<DailyConversationStudioProps> = (
         </div>
 
         {/* Sub Navigation (Dialog vs Roleplay vs Frasa Kunci) */}
-        <div className="flex gap-2 border-b border-[#e8e6e1] pb-3 text-xs">
+        <div className="flex gap-1.5 sm:gap-2 border-b border-[#e8e6e1] pb-3 text-xs overflow-x-auto no-scrollbar">
           <button
             onClick={() => setActiveSubTab('dialogue')}
-            className={`px-3 py-1.5 rounded-md font-medium transition-colors ${
+            className={`whitespace-nowrap px-3 sm:px-3.5 py-1.5 rounded-md font-medium transition-colors shrink-0 ${
               activeSubTab === 'dialogue' ? 'bg-[#21201c] text-[#faf9f7]' : 'text-[#6b675e] hover:bg-[#f4f2ee]'
             }`}
           >
-            1. Contoh Percakapan Lengkap
+            1. Contoh Percakapan
           </button>
           <button
             onClick={() => setActiveSubTab('roleplay')}
-            className={`px-3 py-1.5 rounded-md font-medium transition-colors ${
+            className={`whitespace-nowrap px-3 sm:px-3.5 py-1.5 rounded-md font-medium transition-colors shrink-0 ${
               activeSubTab === 'roleplay' ? 'bg-[#21201c] text-[#faf9f7]' : 'text-[#6b675e] hover:bg-[#f4f2ee]'
             }`}
           >
-            2. Simulasi Roleplay Interaktif
+            2. Simulasi Roleplay
           </button>
           <button
             onClick={() => setActiveSubTab('phrases')}
-            className={`px-3 py-1.5 rounded-md font-medium transition-colors ${
+            className={`whitespace-nowrap px-3 sm:px-3.5 py-1.5 rounded-md font-medium transition-colors shrink-0 ${
               activeSubTab === 'phrases' ? 'bg-[#21201c] text-[#faf9f7]' : 'text-[#6b675e] hover:bg-[#f4f2ee]'
             }`}
           >
-            3. Bank Frasa Penting (Cheat Sheet)
+            3. Bank Frasa Penting
           </button>
         </div>
 
@@ -119,10 +119,10 @@ export const DailyConversationStudio: React.FC<DailyConversationStudioProps> = (
                 return (
                   <div
                     key={idx}
-                    className={`p-4 rounded-lg border text-xs sm:text-sm space-y-2 ${
+                    className={`p-3 sm:p-4 rounded-lg border text-xs sm:text-sm space-y-2 ${
                       isUser
-                        ? 'bg-white border-[#21201c]/30 ml-4 sm:ml-12'
-                        : 'bg-[#f4f2ee] border-[#e8e6e1] mr-4 sm:mr-12'
+                        ? 'bg-white border-[#21201c]/30 ml-2 sm:ml-12'
+                        : 'bg-[#f4f2ee] border-[#e8e6e1] mr-2 sm:mr-12'
                     }`}
                   >
                     <div className="flex justify-between items-center">

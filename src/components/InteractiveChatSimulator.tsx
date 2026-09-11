@@ -93,11 +93,11 @@ export const InteractiveChatSimulator: React.FC<ChatSimulatorProps> = ({ onAddEx
     <div className="w-full space-y-6">
       
       {/* Header */}
-      <div className="clean-surface p-6 space-y-1">
+      <div className="clean-surface p-4 sm:p-6 space-y-1">
         <span className="text-[11px] font-mono-code text-[#c97a3e] uppercase block">
           Interactive Roleplay Messenger (Chat Simulation)
         </span>
-        <h1 className="text-xl font-bold text-[#21201c]">
+        <h1 className="text-lg sm:text-xl font-bold text-[#21201c]">
           Simulasi Chat Percakapan Nyata
         </h1>
         <p className="text-xs text-[#6b675e]">
@@ -106,12 +106,12 @@ export const InteractiveChatSimulator: React.FC<ChatSimulatorProps> = ({ onAddEx
       </div>
 
       {/* Scenario Tabs */}
-      <div className="flex gap-2 overflow-x-auto pb-1">
+      <div className="flex gap-2 overflow-x-auto no-scrollbar pb-1">
         {ROLEPLAY_CHAT_SCENARIOS.map((sc, idx) => (
           <button
             key={sc.id}
             onClick={() => handleSelectScenario(idx)}
-            className={`px-3.5 py-1.5 rounded-lg text-xs font-medium transition-all shrink-0 border ${
+            className={`px-3 sm:px-3.5 py-1.5 rounded-lg text-xs font-medium transition-all shrink-0 border ${
               selectedScenarioIdx === idx
                 ? 'border-[#21201c] bg-[#21201c] text-[#faf9f7] font-semibold'
                 : 'border-[#e8e6e1] bg-white text-[#6b675e] hover:text-[#21201c]'
@@ -123,10 +123,10 @@ export const InteractiveChatSimulator: React.FC<ChatSimulatorProps> = ({ onAddEx
       </div>
 
       {/* Chat Box Container */}
-      <div className="clean-surface p-6 sm:p-8 space-y-5">
+      <div className="clean-surface p-4 sm:p-6 lg:p-8 space-y-4 sm:space-y-5">
         
         {/* Chat Partner Info */}
-        <div className="flex justify-between items-center border-b border-[#e8e6e1] pb-3 text-xs">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 border-b border-[#e8e6e1] pb-3 text-xs">
           <div>
             <span className="font-bold text-[#21201c]">{activeScenario.characterName}</span>
             <span className="text-[#6b675e] ml-2">({activeScenario.characterRole})</span>
@@ -137,18 +137,18 @@ export const InteractiveChatSimulator: React.FC<ChatSimulatorProps> = ({ onAddEx
         </div>
 
         {/* Message Thread */}
-        <div className="space-y-3 min-h-[260px] max-h-[400px] overflow-y-auto p-2">
+        <div className="space-y-3 min-h-[220px] max-h-[380px] overflow-y-auto p-1 sm:p-2">
           {messages.map((m) => {
             const isUser = m.sender === 'user';
             return (
               <div
                 key={m.id}
-                className={`flex flex-col max-w-[85%] ${
+                className={`flex flex-col max-w-[92%] sm:max-w-[85%] ${
                   isUser ? 'ml-auto items-end' : 'mr-auto items-start'
                 }`}
               >
                 <div
-                  className={`p-3.5 rounded-xl text-xs sm:text-sm space-y-1 ${
+                  className={`p-3 sm:p-3.5 rounded-xl text-xs sm:text-sm space-y-1 ${
                     isUser
                       ? 'bg-[#21201c] text-white rounded-br-none'
                       : 'bg-[#f4f2ee] text-[#21201c] border border-[#e8e6e1] rounded-bl-none'

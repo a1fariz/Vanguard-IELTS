@@ -15,7 +15,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ stats, cards, onNavigate, 
     <div className="w-full space-y-8">
       
       {/* Header Profile Summary */}
-      <div className="clean-surface p-6 sm:p-8 space-y-4">
+      <div className="clean-surface p-4 sm:p-6 lg:p-8 space-y-4">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#e8e6e1] pb-6">
           <div className="space-y-1 max-w-2xl">
             <h1 className="text-xl sm:text-2xl font-bold text-[#21201c] tracking-tight">
@@ -43,36 +43,36 @@ export const Dashboard: React.FC<DashboardProps> = ({ stats, cards, onNavigate, 
         </div>
 
         {/* Progress Metrics & Action */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
-          <div className="clean-surface-subtle p-4 rounded-lg space-y-1">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 pt-2">
+          <div className="clean-surface-subtle p-3.5 sm:p-4 rounded-lg space-y-1">
             <span className="text-[11px] font-mono-code text-[#6b675e] uppercase">A1-A2 Baseline</span>
-            <div className="text-xl font-bold text-[#21201c]">2 Foundational Items</div>
+            <div className="text-lg sm:text-xl font-bold text-[#21201c]">2 Foundational Items</div>
             <p className="text-[11px] text-[#6b675e]">Essential verbs and standard sentence structures</p>
           </div>
 
-          <div className="clean-surface-subtle p-4 rounded-lg space-y-1">
+          <div className="clean-surface-subtle p-3.5 sm:p-4 rounded-lg space-y-1">
             <span className="text-[11px] font-mono-code text-[#6b675e] uppercase">B1-B2 Bridge</span>
-            <div className="text-xl font-bold text-[#21201c]">2 Intermediate Items</div>
+            <div className="text-lg sm:text-xl font-bold text-[#21201c]">2 Intermediate Items</div>
             <p className="text-[11px] text-[#6b675e]">Urban & academic transition vocabulary</p>
           </div>
 
-          <div className="clean-surface-subtle p-4 rounded-lg space-y-1">
+          <div className="clean-surface-subtle p-3.5 sm:p-4 rounded-lg space-y-1">
             <span className="text-[11px] font-mono-code text-[#6b675e] uppercase">C1 AWL Lexicon</span>
-            <div className="text-xl font-bold text-[#21201c]">{masteredCount} / {cards.length} Mastered</div>
+            <div className="text-lg sm:text-xl font-bold text-[#21201c]">{masteredCount} / {cards.length} Mastered</div>
             <p className="text-[11px] text-[#6b675e]">High-scoring collocations and inversions</p>
           </div>
         </div>
 
-        <div className="flex flex-wrap gap-2 pt-2">
+        <div className="flex flex-col sm:flex-row gap-2 pt-2">
           <button
             onClick={() => onNavigate('study_srs')}
-            className="px-5 py-2.5 bg-[#21201c] hover:bg-[#383630] text-[#faf9f7] rounded-md text-xs font-semibold transition-colors"
+            className="w-full sm:w-auto px-5 py-2.5 bg-[#21201c] hover:bg-[#383630] text-[#faf9f7] rounded-md text-xs font-semibold transition-colors text-center"
           >
             Start Vocabulary Session
           </button>
           <button
             onClick={() => onNavigate('grammar')}
-            className="px-5 py-2.5 bg-white hover:bg-[#f4f2ee] border border-[#e8e6e1] text-[#21201c] rounded-md text-xs font-semibold transition-colors"
+            className="w-full sm:w-auto px-5 py-2.5 bg-white hover:bg-[#f4f2ee] border border-[#e8e6e1] text-[#21201c] rounded-md text-xs font-semibold transition-colors text-center"
           >
             Practice Grammar Rules
           </button>

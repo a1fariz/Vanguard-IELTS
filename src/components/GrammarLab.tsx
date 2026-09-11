@@ -42,11 +42,11 @@ export const GrammarLab: React.FC<GrammarLabProps> = ({ onAddExp }) => {
     <div className="w-full space-y-6">
       
       {/* Grammar Header */}
-      <div className="clean-surface p-6 space-y-1">
+      <div className="clean-surface p-4 sm:p-6 space-y-1">
         <span className="text-[11px] font-mono-code text-[#6b675e] uppercase block">
           Grammar Curriculum • Sentence Range & Accuracy
         </span>
-        <h1 className="text-xl sm:text-2xl font-bold text-[#21201c]">
+        <h1 className="text-lg sm:text-2xl font-bold text-[#21201c]">
           Academic Sentence Structures
         </h1>
         <p className="text-xs text-[#6b675e]">
@@ -55,7 +55,7 @@ export const GrammarLab: React.FC<GrammarLabProps> = ({ onAddExp }) => {
       </div>
 
       {/* Lesson Navigation */}
-      <div className="flex gap-2 overflow-x-auto pb-1">
+      <div className="flex gap-2 overflow-x-auto no-scrollbar pb-1">
         {GRAMMAR_LESSONS.map((lesson) => (
           <button
             key={lesson.id}
@@ -63,7 +63,7 @@ export const GrammarLab: React.FC<GrammarLabProps> = ({ onAddExp }) => {
               setSelectedLesson(lesson);
               resetQuiz();
             }}
-            className={`px-3.5 py-1.5 rounded-md text-xs font-medium transition-colors shrink-0 border ${
+            className={`px-3 sm:px-3.5 py-1.5 rounded-md text-xs font-medium transition-colors shrink-0 border ${
               selectedLesson.id === lesson.id
                 ? 'border-[#21201c] bg-[#21201c] text-[#faf9f7]'
                 : 'border-[#e8e6e1] bg-white text-[#6b675e] hover:text-[#21201c]'
@@ -75,7 +75,7 @@ export const GrammarLab: React.FC<GrammarLabProps> = ({ onAddExp }) => {
       </div>
 
       {/* Main Lesson Content */}
-      <div className="clean-surface p-6 sm:p-8 space-y-6">
+      <div className="clean-surface p-4 sm:p-6 lg:p-8 space-y-5 sm:space-y-6">
         
         <div className="border-b border-[#e8e6e1] pb-4 space-y-1">
           <h2 className="text-lg font-bold text-[#21201c]">{selectedLesson.title}</h2>

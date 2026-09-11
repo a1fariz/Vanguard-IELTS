@@ -111,7 +111,7 @@ export const StudySRS: React.FC<StudySRSProps> = ({
     <div className="w-full space-y-6">
       
       {/* Controls Bar */}
-      <div className="clean-surface p-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div className="clean-surface p-3 sm:p-4 flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3">
         
         {/* Category / Level Filter */}
         <select
@@ -121,7 +121,7 @@ export const StudySRS: React.FC<StudySRSProps> = ({
             setCurrentIndex(0);
           }}
           aria-label="Pilih Kategori"
-          className="w-full sm:w-auto bg-[#f4f2ee] border border-[#e8e6e1] text-[#21201c] text-xs font-medium rounded-md px-3.5 py-2 focus:outline-none cursor-pointer"
+          className="w-full md:w-auto bg-[#f4f2ee] border border-[#e8e6e1] text-[#21201c] text-xs font-medium rounded-md px-3.5 py-2 focus:outline-none cursor-pointer"
         >
           <option value="all">Semua Level (A1 hingga C1) ({cards.length} kartu)</option>
           <option value="daily_home">Daily: Rumah & Dapur</option>
@@ -133,10 +133,10 @@ export const StudySRS: React.FC<StudySRSProps> = ({
         </select>
 
         {/* Mode Selector */}
-        <div className="flex items-center bg-[#f4f2ee] p-1 rounded-md border border-[#e8e6e1]">
+        <div className="grid grid-cols-3 sm:flex items-center bg-[#f4f2ee] p-1 rounded-md border border-[#e8e6e1] gap-1">
           <button
             onClick={() => setQuizMode('flashcard')}
-            className={`px-4 py-1.5 rounded text-xs font-medium transition-colors ${
+            className={`px-2 sm:px-4 py-1.5 rounded text-[11px] sm:text-xs font-medium transition-colors text-center ${
               quizMode === 'flashcard' ? 'bg-white text-[#21201c] shadow-2xs font-semibold' : 'text-[#6b675e] hover:text-[#21201c]'
             }`}
           >
@@ -144,7 +144,7 @@ export const StudySRS: React.FC<StudySRSProps> = ({
           </button>
           <button
             onClick={() => setQuizMode('multiple_choice')}
-            className={`px-4 py-1.5 rounded text-xs font-medium transition-colors ${
+            className={`px-2 sm:px-4 py-1.5 rounded text-[11px] sm:text-xs font-medium transition-colors text-center ${
               quizMode === 'multiple_choice' ? 'bg-white text-[#21201c] shadow-2xs font-semibold' : 'text-[#6b675e] hover:text-[#21201c]'
             }`}
           >
@@ -152,23 +152,23 @@ export const StudySRS: React.FC<StudySRSProps> = ({
           </button>
           <button
             onClick={() => setQuizMode('spelling_dictation')}
-            className={`px-4 py-1.5 rounded text-xs font-medium transition-colors ${
+            className={`px-2 sm:px-4 py-1.5 rounded text-[11px] sm:text-xs font-medium transition-colors text-center truncate ${
               quizMode === 'spelling_dictation' ? 'bg-white text-[#21201c] shadow-2xs font-semibold' : 'text-[#6b675e] hover:text-[#21201c]'
             }`}
           >
-            Pengejaan & Suara
+            Pengejaan
           </button>
         </div>
 
-        <span className="text-xs font-mono-code text-[#6b675e]">
+        <span className="text-xs font-mono-code text-[#6b675e] text-center md:text-right">
           Kartu {currentIndex + 1} dari {filteredCards.length}
         </span>
       </div>
 
       {/* Main Flashcard Container */}
-      <div className="clean-surface p-6 sm:p-10 space-y-6">
+      <div className="clean-surface p-4 sm:p-8 lg:p-10 space-y-6">
         
-        <div className="flex items-center justify-between border-b border-[#e8e6e1] pb-3 text-xs">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-[#e8e6e1] pb-3 text-xs gap-1">
           <span className="font-mono-code font-semibold text-[#6b675e]">
             Level {currentCard.cefrLevel} • Topik: {currentCard.topic}
           </span>
@@ -182,43 +182,45 @@ export const StudySRS: React.FC<StudySRSProps> = ({
           <div className="space-y-6">
             
             {/* Word & Audio Pronunciation Section */}
-            <div className="text-center space-y-3 py-4">
-              <div className="flex items-center justify-center gap-3">
-                <h2 className="text-3xl sm:text-5xl font-bold text-[#21201c] tracking-tight">
-                  {currentCard.headword}
-                </h2>
+            <div className="text-center space-y-3 py-2 sm:py-4">
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+                <div className="flex items-center gap-2.5 justify-center">
+                  <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold text-[#21201c] tracking-tight break-words text-center">
+                    {currentCard.headword}
+                  </h2>
 
-                {/* Star / Bookmark Toggle Button */}
-                <button
-                  onClick={() => onToggleStar(currentCard.headword)}
-                  title={isCurrentCardStarred ? 'Hapus bookmark' : 'Simpan kata (Bookmark)'}
-                  className={`p-2 rounded-md border transition-colors ${
-                    isCurrentCardStarred
-                      ? 'border-[#e0a82e] bg-[#fdf8ed] text-[#d48b0a]'
-                      : 'border-[#e8e6e1] bg-white text-[#6b675e] hover:text-[#21201c] hover:bg-[#f4f2ee]'
-                  }`}
-                  aria-label="Bookmark Word"
-                >
-                  <svg
-                    className="w-5 h-5"
-                    fill={isCurrentCardStarred ? 'currentColor' : 'none'}
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
+                  {/* Star / Bookmark Toggle Button */}
+                  <button
+                    onClick={() => onToggleStar(currentCard.headword)}
+                    title={isCurrentCardStarred ? 'Hapus bookmark' : 'Simpan kata (Bookmark)'}
+                    className={`p-2 rounded-md border transition-colors shrink-0 ${
+                      isCurrentCardStarred
+                        ? 'border-[#e0a82e] bg-[#fdf8ed] text-[#d48b0a]'
+                        : 'border-[#e8e6e1] bg-white text-[#6b675e] hover:text-[#21201c] hover:bg-[#f4f2ee]'
+                    }`}
+                    aria-label="Bookmark Word"
                   >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={1.5}
-                      d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
-                    />
-                  </svg>
-                </button>
+                    <svg
+                      className="w-5 h-5"
+                      fill={isCurrentCardStarred ? 'currentColor' : 'none'}
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={1.5}
+                        d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
+                      />
+                    </svg>
+                  </button>
+                </div>
                 
                 {/* Audio Controls */}
-                <div className="flex items-center gap-1.5">
+                <div className="flex flex-wrap items-center justify-center gap-1.5 pt-1 sm:pt-0">
                   <button
                     onClick={() => speakText(currentCard.headword, getGlobalAccent(), 0.76)}
-                    className="px-3.5 py-1.5 bg-[#21201c] hover:bg-[#383630] text-[#faf9f7] rounded-md text-xs font-medium transition-colors flex items-center gap-1.5 shadow-2xs"
+                    className="px-3 py-1.5 bg-[#21201c] hover:bg-[#383630] text-[#faf9f7] rounded-md text-xs font-medium transition-colors flex items-center gap-1.5 shadow-2xs"
                     title={`Putar Audio Aksen ${getGlobalAccent() === 'en-GB' ? 'British' : 'American'}`}
                   >
                     <span>Putar ({getGlobalAccent() === 'en-GB' ? 'UK' : 'US'})</span>
@@ -356,7 +358,7 @@ export const StudySRS: React.FC<StudySRSProps> = ({
                   <span className="text-[11px] font-mono-code text-center text-[#6b675e] uppercase block">
                     Evaluasi Daya Ingat Anda (Jadwal Pengulangan SM-2)
                   </span>
-                  <div className="grid grid-cols-4 gap-2 text-center text-xs">
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center text-xs">
                     <button
                       onClick={() => handleSRSGrading(1)}
                       className="p-2.5 border border-[#e8e6e1] rounded-md hover:bg-[#f4f2ee] text-[#21201c] font-medium"

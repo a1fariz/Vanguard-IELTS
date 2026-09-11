@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from 'react';
+import { Volume2, Lightbulb, CheckCircle2, Sparkles } from 'lucide-react';
 import { speakText, getGlobalAccent } from '../utils/speech';
 
 interface DailyExpression {
@@ -256,9 +257,9 @@ export const DailyExpressionCard: React.FC<DailyExpressionCardProps> = ({ onAddE
                 onClick={() => handlePlayAudio(currentExpression.phrase)}
                 disabled={isSpeaking}
                 title="Dengarkan pengucapan frasa"
-                className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-medium rounded-md bg-[#ffffff] hover:bg-[#f3f0e6] border border-[#e8e6e1] text-[#21201c] transition-all"
+                className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-medium rounded-md bg-[#ffffff] hover:bg-[#f3f0e6] border border-[#e8e6e1] text-[#21201c] transition-all shadow-2xs"
               >
-                <span>🔊</span>
+                <Volume2 className="w-3.5 h-3.5" />
                 <span className="font-mono-code text-[11px] text-[#6b675e]">Play</span>
               </button>
             </div>
@@ -289,9 +290,9 @@ export const DailyExpressionCard: React.FC<DailyExpressionCardProps> = ({ onAddE
               onClick={() => handlePlayAudio(currentExpression.exampleSentence)}
               disabled={isSpeaking}
               title="Dengarkan contoh kalimat"
-              className="p-1.5 bg-[#ffffff] hover:bg-[#faf9f7] border border-[#e8e6e1] rounded-md text-[#21201c] shrink-0 text-xs transition-colors"
+              className="p-1.5 bg-[#ffffff] hover:bg-[#faf9f7] border border-[#e8e6e1] rounded-md text-[#21201c] shrink-0 text-xs transition-colors shadow-2xs"
             >
-              🔊
+              <Volume2 className="w-3.5 h-3.5" />
             </button>
           </div>
           <p className="text-xs text-[#6b675e] italic border-t border-[#e8e6e1]/60 pt-1.5">
@@ -301,20 +302,30 @@ export const DailyExpressionCard: React.FC<DailyExpressionCardProps> = ({ onAddE
 
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-1 text-xs">
           <div className="flex items-start gap-1.5 text-[#6b675e] leading-snug">
-            <span className="font-semibold text-[#21201c] shrink-0">💡 Konteks Pakai:</span>
-            <span>{currentExpression.usageContextId}</span>
+            <Lightbulb className="w-3.5 h-3.5 text-[#d48b0a] shrink-0 mt-0.5" />
+            <span><strong className="text-[#21201c]">Konteks:</strong> {currentExpression.usageContextId}</span>
           </div>
 
           <button
             onClick={handleMarkLearned}
             disabled={isLearned}
-            className={`px-3 py-1.5 rounded-lg text-xs font-medium border shrink-0 transition-all font-mono-code ${
+            className={`px-3 py-1.5 rounded-lg text-xs font-medium border shrink-0 transition-all font-mono-code flex items-center justify-center gap-1.5 ${
               isLearned
                 ? 'bg-[#f0f9f2] text-[#2f7a42] border-[#c8e8c8] cursor-default'
-                : 'bg-[#21201c] text-[#faf9f7] hover:bg-[#383632] border-[#21201c]'
+                : 'bg-[#21201c] text-[#faf9f7] hover:bg-[#383632] border-[#21201c] shadow-2xs active:scale-95'
             }`}
           >
-            {isLearned ? '✓ Sudah Dipelajari (+15 XP)' : '+ Pelajari Ini (+15 XP)'}
+            {isLearned ? (
+              <>
+                <CheckCircle2 className="w-3.5 h-3.5 text-[#2f7a42]" />
+                <span>Sudah Dipelajari (+15 XP)</span>
+              </>
+            ) : (
+              <>
+                <Sparkles className="w-3.5 h-3.5 text-[#d48b0a]" />
+                <span>+ Pelajari Ini (+15 XP)</span>
+              </>
+            )}
           </button>
         </div>
       </div>

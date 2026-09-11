@@ -53,7 +53,7 @@ export const ListeningLab: React.FC<ListeningLabProps> = ({ onAddExp }) => {
       </div>
 
       {/* Audio Controller */}
-      <div className="clean-surface p-5 text-center space-y-3">
+      <div className="clean-surface p-4 sm:p-5 text-center space-y-3">
         <div className="text-xs">
           <span className="text-[#6b675e]">Topic: </span>
           <strong className="text-[#21201c]">{selectedItem.title}</strong>
@@ -62,7 +62,7 @@ export const ListeningLab: React.FC<ListeningLabProps> = ({ onAddExp }) => {
         <div className="flex flex-wrap items-center justify-center gap-2 pt-1">
           <button
             onClick={handlePlayAudio}
-            className="px-4 py-2 bg-[#21201c] hover:bg-[#383630] text-[#faf9f7] rounded-md text-xs font-semibold"
+            className="w-full sm:w-auto px-4 py-2 bg-[#21201c] hover:bg-[#383630] text-[#faf9f7] rounded-md text-xs font-semibold shadow-2xs"
           >
             Play Audio Clip
           </button>
@@ -92,7 +92,7 @@ export const ListeningLab: React.FC<ListeningLabProps> = ({ onAddExp }) => {
       </div>
 
       {/* Dictation Blanks */}
-      <div className="clean-surface p-6 space-y-4">
+      <div className="clean-surface p-4 sm:p-6 space-y-4">
         <span className="text-xs font-mono-code text-[#6b675e] uppercase block">
           Transcript Fill-in-the-Blanks
         </span>
@@ -106,13 +106,13 @@ export const ListeningLab: React.FC<ListeningLabProps> = ({ onAddExp }) => {
             );
 
             return (
-              <div key={b.index} className="bg-[#f4f2ee] p-3.5 rounded border border-[#e8e6e1] space-y-1.5 text-xs">
-                <div className="flex justify-between">
+              <div key={b.index} className="bg-[#f4f2ee] p-3 sm:p-3.5 rounded border border-[#e8e6e1] space-y-1.5 text-xs">
+                <div className="flex flex-col sm:flex-row sm:justify-between gap-0.5 sm:gap-2">
                   <span className="font-mono-code font-bold text-[#21201c]">Blank [{b.index + 1}]</span>
-                  <span className="text-[#6b675e]">Clue: {b.hint}</span>
+                  <span className="text-[#6b675e] text-[11px]">Clue: {b.hint}</span>
                 </div>
 
-                <div className="flex items-center gap-2">
+                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
                   <input
                     type="text"
                     value={userVal}
@@ -128,7 +128,7 @@ export const ListeningLab: React.FC<ListeningLabProps> = ({ onAddExp }) => {
                     }`}
                   />
                   {isGraded && (
-                    <span className={`text-xs font-mono-code font-bold ${isMatch ? 'text-[#2f7a42]' : 'text-[#8f3a3a]'}`}>
+                    <span className={`text-xs font-mono-code font-bold shrink-0 ${isMatch ? 'text-[#2f7a42]' : 'text-[#8f3a3a]'}`}>
                       {isMatch ? 'Correct' : 'Incorrect'}
                     </span>
                   )}

@@ -18,6 +18,7 @@ import { ShadowingStudio } from './components/ShadowingStudio';
 import { SentenceBuilderGame } from './components/SentenceBuilderGame';
 import { InteractiveChatSimulator } from './components/InteractiveChatSimulator';
 import { DailyQuestPlanner } from './components/DailyQuestPlanner';
+import { BottomNav } from './components/BottomNav';
 import { INITIAL_SRS_CARDS } from './data/cardsData';
 import type { SRSCard, UserStats, BandScoreTarget, CEFRLevel, AppMode } from './types';
 import { 
@@ -226,7 +227,7 @@ export function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#faf9f7] text-[#21201c] flex flex-col selection:bg-[#21201c] selection:text-white">
+    <div className="min-h-screen bg-[#faf9f7] text-[#21201c] flex flex-col selection:bg-[#21201c] selection:text-white pb-16 md:pb-0">
       
       {/* Navigation */}
       <Navbar
@@ -239,7 +240,7 @@ export function App() {
       />
 
       {/* Main Content */}
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 space-y-6">
+      <main className="flex-1 max-w-7xl w-full mx-auto px-2.5 sm:px-6 lg:px-8 py-3.5 sm:py-8 space-y-5 sm:space-y-6 overflow-x-hidden">
         
         {/* Daily Quests Summary */}
         <DailyQuestPlanner
@@ -250,14 +251,14 @@ export function App() {
 
         {/* Placement Test Prompt for IELTS mode */}
         {!stats.placementTestDone && stats.mode === 'ielts' && activeTab === 'dashboard' && (
-          <div className="clean-surface p-4 bg-[#f4f2ee] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs">
+          <div className="clean-surface p-3.5 sm:p-4 bg-[#f4f2ee] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs">
             <div className="space-y-0.5">
               <span className="font-bold text-[#21201c]">Mulai dari mana kemampuan IELTS Anda?</span>
               <p className="text-[#6b675e]">Ikuti tes penempatan singkat (A1 hingga C1) untuk menentukan titik awal Anda.</p>
             </div>
             <button
               onClick={() => setShowPlacementModal(true)}
-              className="px-4 py-2 bg-[#21201c] text-[#faf9f7] rounded-md font-medium shrink-0"
+              className="w-full sm:w-auto px-4 py-2 bg-[#21201c] text-[#faf9f7] rounded-md font-medium shrink-0 text-center"
             >
               Mulai Placement Test
             </button>
@@ -439,6 +440,14 @@ export function App() {
           </div>
         </div>
       </footer>
+
+      {/* Mobile Bottom Navigation */}
+      <BottomNav
+        mode={stats.mode}
+        activeTab={activeTab}
+        onNavigate={setActiveTab}
+        unmasteredMistakes={(stats.mistakeBank || []).filter((m) => !m.resolved).length}
+      />
 
     </div>
   );

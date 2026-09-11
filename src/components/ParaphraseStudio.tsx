@@ -69,11 +69,11 @@ export const ParaphraseStudio: React.FC<ParaphraseStudioProps> = ({ onAddExp, on
     <div className="w-full space-y-6">
       
       {/* Header */}
-      <div className="clean-surface p-6 space-y-1">
+      <div className="clean-surface p-4 sm:p-6 space-y-1">
         <span className="text-[11px] font-mono-code text-[#6b675e] uppercase block">
           Latihan Parafrase & Transformasi Kalimat
         </span>
-        <h1 className="text-xl font-bold text-[#21201c]">
+        <h1 className="text-lg sm:text-xl font-bold text-[#21201c]">
           Studio Parafrase IELTS
         </h1>
         <p className="text-xs text-[#6b675e]">
@@ -82,47 +82,43 @@ export const ParaphraseStudio: React.FC<ParaphraseStudioProps> = ({ onAddExp, on
       </div>
 
       {/* Latihan Card */}
-      <div className="clean-surface p-6 sm:p-8 space-y-5">
+      <div className="clean-surface p-4 sm:p-6 lg:p-8 space-y-5">
         
-        <div className="flex justify-between items-center border-b border-[#e8e6e1] pb-3 text-xs">
-          <span className="font-mono-code text-[#c97a3e] font-semibold">
-            Tingkat: {currentEx.level} • Teknik: {currentEx.techniqueId}
-          </span>
-          <span className="font-mono-code text-[#6b675e]">
-            Latihan {currentIdx + 1} / {PARAPHRASE_EXERCISES.length}
-          </span>
-        </div>
-
-        {/* Kalimat Asli */}
-        <div className="space-y-1.5">
-          <span className="text-xs text-[#6b675e] block">Kalimat Asli (Band 5.5 - 6.0):</span>
-          <div className="p-3.5 bg-[#f4f2ee] rounded border border-[#e8e6e1] font-reading text-sm sm:text-base text-[#21201c]">
-            "{currentEx.sourceSentence}"
+        {/* Soal Asli */}
+        <div className="p-3.5 sm:p-4 bg-[#f4f2ee] rounded-lg border border-[#e8e6e1] space-y-2">
+          <div className="flex justify-between items-center text-xs">
+            <span className="font-mono-code text-[#6b675e] uppercase">
+              Latihan {currentIdx + 1} dari {PARAPHRASE_EXERCISES.length}
+            </span>
+            <span className="font-mono-code text-[#c97a3e] font-semibold">
+              Level {currentEx.level}
+            </span>
           </div>
-          <p className="text-[11px] text-[#6b675e] italic">
-            Petunjuk: {currentEx.sourceExplanationId}
+          <p className="font-reading text-base sm:text-lg text-[#21201c] font-medium leading-relaxed">
+            "{currentEx.sourceSentence}"
           </p>
         </div>
 
-        {/* Input Area */}
+        {/* Input Jawaban */}
         <div className="space-y-2">
           <label className="text-xs font-semibold text-[#21201c] block">
-            Tuliskan Kalimat Parafrase Akademik Anda:
+            Tulis Parafrase Anda Menggunakan Variasi Struktur & Sinonim:
           </label>
           <textarea
             rows={3}
             value={userInput}
             onChange={(e) => setUserInput(e.target.value)}
-            placeholder="Tulis parafrase dengan kosakata akademik dan struktur kalimat baru..."
-            className="w-full p-3 bg-white border border-[#e8e6e1] rounded-md text-xs sm:text-sm text-[#21201c] focus:outline-none focus:border-[#21201c]"
+            placeholder="Contoh: gunakan pola inversi, passive voice, atau kata benda abstrak..."
+            className="w-full p-3 bg-white border border-[#e8e6e1] rounded-md text-xs sm:text-sm text-[#21201c] leading-relaxed focus:outline-none focus:border-[#21201c]"
           />
-          <div className="flex justify-between items-center pt-1">
+
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pt-1">
             <span className="text-[11px] text-[#6b675e]">
               Contoh kata kunci: {currentEx.acceptedKeywords.slice(0, 3).join(', ')}
             </span>
             <button
               onClick={handleEvaluate}
-              className="px-4 py-2 bg-[#21201c] text-[#faf9f7] rounded-md text-xs font-semibold"
+              className="w-full sm:w-auto px-4 py-2 bg-[#21201c] text-[#faf9f7] rounded-md text-xs font-semibold text-center"
             >
               Evaluasi Parafrase (+50 XP)
             </button>

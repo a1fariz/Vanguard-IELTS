@@ -61,8 +61,8 @@ export const DailyAdventureMap: React.FC<DailyAdventureMapProps> = ({
     <div className="w-full space-y-6">
       
       {/* Header Banner */}
-      <div className="clean-surface p-6 sm:p-8 space-y-2">
-        <div className="flex justify-between items-center text-xs">
+      <div className="clean-surface p-4 sm:p-6 lg:p-8 space-y-2">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 text-xs">
           <span className="font-mono-code text-[#c97a3e] font-semibold uppercase">
             Everyday English & Situational Fluency
           </span>
@@ -79,7 +79,7 @@ export const DailyAdventureMap: React.FC<DailyAdventureMapProps> = ({
       </div>
 
       {/* Level Roadmap Grid (Gamified Level Selector) */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2 sm:gap-3">
         {DAILY_STAGES.map((stg) => {
           const isUnlocked = stg.id <= unlockedStage;
           const isCurrent = stg.id === selectedStageId;
@@ -92,7 +92,7 @@ export const DailyAdventureMap: React.FC<DailyAdventureMapProps> = ({
                 setActiveTab('vocab');
                 resetQuiz();
               }}
-              className={`p-3.5 rounded-lg border text-left transition-all space-y-1.5 ${
+              className={`p-2.5 sm:p-3.5 rounded-lg border text-left transition-all space-y-1 sm:space-y-1.5 ${
                 isCurrent
                   ? 'border-[#21201c] bg-[#21201c] text-[#faf9f7] shadow-xs'
                   : isUnlocked
@@ -104,7 +104,7 @@ export const DailyAdventureMap: React.FC<DailyAdventureMapProps> = ({
                 <span>STAGE {stg.id}</span>
                 <span>{isUnlocked ? `[${stg.cefrLevel}]` : '[LOCKED]'}</span>
               </div>
-              <div className="font-bold text-xs line-clamp-1">
+              <div className="font-bold text-xs truncate">
                 {stg.titleId.split(':')[1] || stg.titleId}
               </div>
               <div className="text-[10px] opacity-75 font-mono-code">
@@ -116,15 +116,15 @@ export const DailyAdventureMap: React.FC<DailyAdventureMapProps> = ({
       </div>
 
       {/* Stage Detail Workspace */}
-      <div className="clean-surface p-6 sm:p-8 space-y-6">
+      <div className="clean-surface p-4 sm:p-6 lg:p-8 space-y-5 sm:space-y-6">
         
         {/* Stage Overview Box */}
-        <div className="clean-surface-subtle p-5 rounded-lg space-y-2">
+        <div className="clean-surface-subtle p-3.5 sm:p-5 rounded-lg space-y-2">
           <div className="flex justify-between items-center text-xs">
-            <span className="font-bold text-[#21201c] uppercase font-mono-code">
+            <span className="font-bold text-[#21201c] uppercase font-mono-code truncate pr-2">
               {activeStage.titleId}
             </span>
-            <span className="font-mono-code text-[#c97a3e] font-semibold">
+            <span className="font-mono-code text-[#c97a3e] font-semibold shrink-0">
               Level {activeStage.cefrLevel}
             </span>
           </div>
@@ -134,10 +134,10 @@ export const DailyAdventureMap: React.FC<DailyAdventureMapProps> = ({
         </div>
 
         {/* Tab Controls */}
-        <div className="flex gap-2 border-b border-[#e8e6e1] pb-3 text-xs">
+        <div className="flex gap-1.5 sm:gap-2 border-b border-[#e8e6e1] pb-3 text-xs overflow-x-auto no-scrollbar">
           <button
             onClick={() => setActiveTab('vocab')}
-            className={`px-3.5 py-1.5 rounded-md font-medium transition-colors ${
+            className={`whitespace-nowrap px-3 sm:px-3.5 py-1.5 rounded-md font-medium transition-colors shrink-0 ${
               activeTab === 'vocab' ? 'bg-[#21201c] text-[#faf9f7] font-semibold' : 'text-[#6b675e] hover:bg-[#f4f2ee]'
             }`}
           >
@@ -145,7 +145,7 @@ export const DailyAdventureMap: React.FC<DailyAdventureMapProps> = ({
           </button>
           <button
             onClick={() => setActiveTab('dialogue')}
-            className={`px-3.5 py-1.5 rounded-md font-medium transition-colors ${
+            className={`whitespace-nowrap px-3 sm:px-3.5 py-1.5 rounded-md font-medium transition-colors shrink-0 ${
               activeTab === 'dialogue' ? 'bg-[#21201c] text-[#faf9f7] font-semibold' : 'text-[#6b675e] hover:bg-[#f4f2ee]'
             }`}
           >
@@ -153,7 +153,7 @@ export const DailyAdventureMap: React.FC<DailyAdventureMapProps> = ({
           </button>
           <button
             onClick={() => setActiveTab('quiz')}
-            className={`px-3.5 py-1.5 rounded-md font-medium transition-colors ${
+            className={`whitespace-nowrap px-3 sm:px-3.5 py-1.5 rounded-md font-medium transition-colors shrink-0 ${
               activeTab === 'quiz' ? 'bg-[#21201c] text-[#faf9f7] font-semibold' : 'text-[#6b675e] hover:bg-[#f4f2ee]'
             }`}
           >
@@ -231,10 +231,10 @@ export const DailyAdventureMap: React.FC<DailyAdventureMapProps> = ({
                 return (
                   <div
                     key={idx}
-                    className={`p-4 rounded-lg border text-xs sm:text-sm space-y-1.5 ${
+                    className={`p-3 sm:p-4 rounded-lg border text-xs sm:text-sm space-y-1.5 ${
                       isUser
-                        ? 'bg-white border-[#21201c]/40 ml-4 sm:ml-10'
-                        : 'bg-[#f4f2ee] border-[#e8e6e1] mr-4 sm:mr-10'
+                        ? 'bg-white border-[#21201c]/40 ml-2 sm:ml-10'
+                        : 'bg-[#f4f2ee] border-[#e8e6e1] mr-2 sm:mr-10'
                     }`}
                   >
                     <div className="flex justify-between items-center">

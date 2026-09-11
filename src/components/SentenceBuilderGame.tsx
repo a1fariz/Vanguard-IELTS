@@ -67,11 +67,11 @@ export const SentenceBuilderGame: React.FC<SentenceBuilderGameProps> = ({ onAddE
     <div className="w-full space-y-6">
       
       {/* Header */}
-      <div className="clean-surface p-6 space-y-1">
+      <div className="clean-surface p-4 sm:p-6 space-y-1">
         <span className="text-[11px] font-mono-code text-[#c97a3e] uppercase block">
           Sentence Builder & Grammar Refinement Game
         </span>
-        <h1 className="text-xl font-bold text-[#21201c]">
+        <h1 className="text-lg sm:text-xl font-bold text-[#21201c]">
           Tantangan Susun Kalimat (Daily & IELTS)
         </h1>
         <p className="text-xs text-[#6b675e]">
@@ -80,10 +80,10 @@ export const SentenceBuilderGame: React.FC<SentenceBuilderGameProps> = ({ onAddE
       </div>
 
       {/* Workspace */}
-      <div className="clean-surface p-6 sm:p-8 space-y-6">
+      <div className="clean-surface p-4 sm:p-6 lg:p-8 space-y-5 sm:space-y-6">
         
         {/* Challenge Target */}
-        <div className="clean-surface-subtle p-5 rounded-lg space-y-2">
+        <div className="clean-surface-subtle p-3.5 sm:p-5 rounded-lg space-y-2">
           <div className="flex justify-between items-center text-xs">
             <span className="font-mono-code text-[#c97a3e] font-semibold">
               Tingkat: {activeChallenge.level} • Kategori: {activeChallenge.category.toUpperCase()}
@@ -94,7 +94,7 @@ export const SentenceBuilderGame: React.FC<SentenceBuilderGameProps> = ({ onAddE
           </div>
 
           <div className="text-xs text-[#6b675e]">Maksud Kalimat yang Diinginkan:</div>
-          <p className="text-base sm:text-lg font-bold text-[#21201c]">
+          <p className="text-sm sm:text-lg font-bold text-[#21201c]">
             "{activeChallenge.targetMeaningId}"
           </p>
         </div>
@@ -104,7 +104,7 @@ export const SentenceBuilderGame: React.FC<SentenceBuilderGameProps> = ({ onAddE
           <span className="text-xs font-semibold text-[#21201c] block">
             Susunan Kalimat Anda (Klik kata untuk membatalkan):
           </span>
-          <div className="min-h-[60px] p-3.5 bg-white border border-[#e8e6e1] rounded-lg flex flex-wrap gap-2 items-center">
+          <div className="min-h-[54px] p-3 sm:p-3.5 bg-white border border-[#e8e6e1] rounded-lg flex flex-wrap gap-2 items-center">
             {placedWords.length === 0 ? (
               <span className="text-xs text-[#a3998b] italic">
                 Klik kata-kata acak di bawah untuk menyusun kalimat...
@@ -114,7 +114,7 @@ export const SentenceBuilderGame: React.FC<SentenceBuilderGameProps> = ({ onAddE
                 <button
                   key={idx}
                   onClick={() => handleRemoveWord(word, idx)}
-                  className="px-3 py-1.5 bg-[#21201c] hover:bg-[#383630] text-[#faf9f7] rounded-md text-xs font-medium transition-colors"
+                  className="px-3 sm:px-3.5 py-2 bg-[#21201c] hover:bg-[#383630] text-[#faf9f7] rounded-md text-xs sm:text-sm font-medium transition-colors"
                 >
                   {word}
                 </button>
@@ -133,7 +133,7 @@ export const SentenceBuilderGame: React.FC<SentenceBuilderGameProps> = ({ onAddE
               <button
                 key={idx}
                 onClick={() => handlePickWord(word, idx)}
-                className="px-3 py-1.5 bg-[#f4f2ee] hover:bg-[#eae7df] border border-[#e8e6e1] text-[#21201c] rounded-md text-xs font-medium transition-colors"
+                className="px-3 sm:px-3.5 py-2 bg-[#f4f2ee] hover:bg-[#eae7df] border border-[#e8e6e1] text-[#21201c] rounded-md text-xs sm:text-sm font-medium transition-colors active:scale-95"
               >
                 {word}
               </button>
@@ -142,10 +142,10 @@ export const SentenceBuilderGame: React.FC<SentenceBuilderGameProps> = ({ onAddE
         </div>
 
         {/* Action Controls */}
-        <div className="flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-[#e8e6e1]">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2.5 pt-3 border-t border-[#e8e6e1]">
           <button
             onClick={handleReset}
-            className="px-3 py-1.5 text-xs text-[#6b675e] hover:text-[#21201c]"
+            className="px-3 py-2 text-xs text-[#6b675e] hover:text-[#21201c] order-2 sm:order-1 text-center"
           >
             Susun Ulang
           </button>
@@ -154,19 +154,17 @@ export const SentenceBuilderGame: React.FC<SentenceBuilderGameProps> = ({ onAddE
             <button
               disabled={placedWords.length === 0}
               onClick={handleCheckSentence}
-              className="px-5 py-2.5 bg-[#21201c] disabled:opacity-30 text-[#faf9f7] rounded-md text-xs font-semibold"
+              className="w-full sm:w-auto px-5 py-2.5 bg-[#21201c] disabled:opacity-30 text-[#faf9f7] rounded-md text-xs font-semibold order-1 sm:order-2 text-center"
             >
               Periksa Susunan (+40 XP)
             </button>
           ) : (
-            <div className="flex gap-2">
-              <button
-                onClick={handleNextChallenge}
-                className="px-5 py-2.5 bg-[#21201c] text-[#faf9f7] rounded-md text-xs font-semibold"
-              >
-                Lanjut ke Tantangan Berikutnya
-              </button>
-            </div>
+            <button
+              onClick={handleNextChallenge}
+              className="w-full sm:w-auto px-5 py-2.5 bg-[#21201c] text-[#faf9f7] rounded-md text-xs font-semibold order-1 sm:order-2 text-center"
+            >
+              Lanjut ke Tantangan Berikutnya
+            </button>
           )}
         </div>
 

@@ -12,7 +12,7 @@ export const MistakeBank: React.FC<MistakeBankProps> = ({ mistakes, onResolve, o
     <div className="w-full space-y-6">
       
       {/* Header */}
-      <div className="clean-surface p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+      <div className="clean-surface p-4 sm:p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div className="space-y-1">
           <span className="text-[11px] font-mono-code text-[#6b675e] uppercase block">
             Buku Catatan Kesalahan Pribadi

@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { Volume2, Mic, Square } from 'lucide-react';
 import { SHADOWING_EXERCISES } from '../data/gamifiedFeaturesData';
 import type { ShadowingExercise } from '../types';
 import { speakText, stopSpeaking, getGlobalAccent } from '../utils/speech';
+import { AudioWaveform } from './AudioWaveform';
 
 interface ShadowingStudioProps {
   onAddExp: (amount: number) => void;
@@ -108,11 +110,11 @@ export const ShadowingStudio: React.FC<ShadowingStudioProps> = ({ onAddExp, onCo
     <div className="w-full space-y-6">
       
       {/* Header */}
-      <div className="clean-surface p-6 space-y-1">
+      <div className="clean-surface p-4 sm:p-6 space-y-1">
         <span className="text-[11px] font-mono-code text-[#c97a3e] uppercase block">
           Voice Shadowing & Intonation Trainer
         </span>
-        <h1 className="text-xl font-bold text-[#21201c]">
+        <h1 className="text-lg sm:text-xl font-bold text-[#21201c]">
           Studio Shadowing Intonasi Native
         </h1>
         <p className="text-xs text-[#6b675e]">
@@ -121,7 +123,7 @@ export const ShadowingStudio: React.FC<ShadowingStudioProps> = ({ onAddExp, onCo
       </div>
 
       {/* Selector */}
-      <div className="flex gap-2 overflow-x-auto pb-1">
+      <div className="flex gap-2 overflow-x-auto no-scrollbar pb-1">
         {SHADOWING_EXERCISES.map((ex, idx) => (
           <button
             key={ex.id}
@@ -131,7 +133,7 @@ export const ShadowingStudio: React.FC<ShadowingStudioProps> = ({ onAddExp, onCo
               setScoreResult(null);
               stopSpeaking();
             }}
-            className={`px-3.5 py-1.5 rounded-lg text-xs font-medium transition-all shrink-0 border ${
+            className={`px-3 sm:px-3.5 py-1.5 rounded-lg text-xs font-medium transition-all shrink-0 border ${
               currentIdx === idx
                 ? 'border-[#21201c] bg-[#21201c] text-[#faf9f7] font-semibold'
                 : 'border-[#e8e6e1] bg-white text-[#6b675e] hover:text-[#21201c]'
@@ -143,26 +145,28 @@ export const ShadowingStudio: React.FC<ShadowingStudioProps> = ({ onAddExp, onCo
       </div>
 
       {/* Main Workspace */}
-      <div className="clean-surface p-6 sm:p-8 space-y-6">
+      <div className="clean-surface p-4 sm:p-6 lg:p-8 space-y-5 sm:space-y-6">
         
         {/* Model Sentence Audio Player */}
-        <div className="clean-surface-subtle p-5 rounded-lg space-y-3">
-          <div className="flex justify-between items-center text-xs">
+        <div className="clean-surface-subtle p-3.5 sm:p-5 rounded-lg space-y-3">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 text-xs">
             <span className="font-mono-code text-[#c97a3e] font-semibold">
               Kategori: {activeExercise.category}
             </span>
-            <div className="flex gap-2">
+            <div className="flex flex-wrap gap-2">
               <button
                 onClick={() => handlePlayModelAudio(false)}
-                className="px-3 py-1.5 bg-[#21201c] hover:bg-[#383630] text-[#faf9f7] rounded text-xs font-medium"
+                className="px-3 py-1.5 bg-[#21201c] hover:bg-[#383630] text-[#faf9f7] rounded text-xs font-medium flex items-center gap-1.5 shadow-2xs"
               >
-                Dengar Suara Normal
+                <Volume2 className="w-3.5 h-3.5" />
+                <span>Dengar Suara Normal</span>
               </button>
               <button
                 onClick={() => handlePlayModelAudio(true)}
-                className="px-3 py-1.5 bg-white border border-[#e8e6e1] hover:bg-[#eae7df] text-[#21201c] rounded text-xs font-medium"
+                className="px-3 py-1.5 bg-white border border-[#e8e6e1] hover:bg-[#eae7df] text-[#21201c] rounded text-xs font-medium flex items-center gap-1.5"
               >
-                Dengar 0.6x (Lambat)
+                <Volume2 className="w-3.5 h-3.5 opacity-70" />
+                <span>0.6x (Lambat)</span>
               </button>
             </div>
           </div>
@@ -181,32 +185,38 @@ export const ShadowingStudio: React.FC<ShadowingStudioProps> = ({ onAddExp, onCo
         </div>
 
         {/* Recorder Box */}
-        <div className="clean-surface-subtle p-5 rounded-lg text-center space-y-4">
+        <div className="clean-surface-subtle p-4 sm:p-5 rounded-lg text-center space-y-3">
           <span className="text-xs font-semibold text-[#21201c] block">
             Giliran Anda: Tirukan Kalimat di Atas
           </span>
+
+          {/* Realtime Audio Waveform Visualizer */}
+          <AudioWaveform isRecording={isRecording} color="#8f3a3a" />
 
           <div className="flex justify-center gap-2">
             {!isRecording ? (
               <button
                 onClick={handleStartRecording}
-                className="px-5 py-2.5 bg-[#21201c] hover:bg-[#383630] text-[#faf9f7] rounded-md text-xs font-semibold"
+                className="px-5 py-2.5 bg-[#21201c] hover:bg-[#383630] text-[#faf9f7] rounded-md text-xs font-semibold flex items-center gap-2 shadow-2xs transition-all active:scale-95"
               >
-                Mulai Rekam Suara Anda
+                <Mic className="w-4 h-4 text-[#c97a3e]" />
+                <span>Mulai Rekam Suara Anda</span>
               </button>
             ) : (
               <button
                 onClick={handleStopAndEvaluate}
-                className="px-5 py-2.5 bg-[#8f3a3a] hover:bg-[#a64242] text-white rounded-md text-xs font-semibold animate-pulse"
+                className="px-5 py-2.5 bg-[#8f3a3a] hover:bg-[#a64242] text-white rounded-md text-xs font-semibold flex items-center gap-2 animate-pulse shadow-md"
               >
-                Hentikan & Evaluasi Pelafalan
+                <Square className="w-3.5 h-3.5 fill-white" />
+                <span>Hentikan & Evaluasi Pelafalan</span>
               </button>
             )}
           </div>
 
           {isRecording && (
-            <div className="text-xs text-[#8f3a3a] font-mono-code font-medium">
-              Merekam... Silakan ucapkan kalimat sekarang.
+            <div className="text-xs text-[#8f3a3a] font-mono-code font-medium flex items-center justify-center gap-1.5">
+              <span className="w-2 h-2 rounded-full bg-[#8f3a3a] animate-ping" />
+              <span>Merekam... Ucapkan kalimat dengan intonasi natural</span>
             </div>
           )}
 

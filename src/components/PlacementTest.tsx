@@ -46,11 +46,11 @@ export const PlacementTest: React.FC<PlacementTestProps> = ({ onComplete, onCanc
   return (
     <div className="max-w-2xl mx-auto space-y-6">
       
-      <div className="clean-surface p-6 sm:p-8 space-y-4">
+      <div className="clean-surface p-4 sm:p-6 lg:p-8 space-y-4">
         
         {!isCompleted ? (
           <>
-            <div className="flex justify-between items-center border-b border-[#e8e6e1] pb-3 text-xs">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-[#e8e6e1] pb-3 text-xs gap-1">
               <span className="font-mono-code text-[#6b675e] uppercase">
                 Tes Penempatan Kemampuan (A1 hingga C1)
               </span>
