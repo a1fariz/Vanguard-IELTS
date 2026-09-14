@@ -19,6 +19,7 @@ import { SentenceBuilderGame } from './components/SentenceBuilderGame';
 import { InteractiveChatSimulator } from './components/InteractiveChatSimulator';
 import { DailyQuestPlanner } from './components/DailyQuestPlanner';
 import { BottomNav } from './components/BottomNav';
+import { ModuleDrawer } from './components/ModuleDrawer';
 import { INITIAL_SRS_CARDS } from './data/cardsData';
 import type { SRSCard, UserStats, BandScoreTarget, CEFRLevel, AppMode } from './types';
 import { 
@@ -36,6 +37,7 @@ export function App() {
   const [cards, setCards] = useState<SRSCard[]>(() => loadSavedCards(INITIAL_SRS_CARDS));
   const [showPlacementModal, setShowPlacementModal] = useState<boolean>(false);
   const [currentAccent, setCurrentAccent] = useState<'en-US' | 'en-GB'>(() => getGlobalAccent());
+  const [isMenuDrawerOpen, setIsMenuDrawerOpen] = useState<boolean>(false);
 
   useEffect(() => {
     saveCardsToStorage(cards);
@@ -227,7 +229,7 @@ export function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#faf9f7] text-[#21201c] flex flex-col selection:bg-[#21201c] selection:text-white pb-16 md:pb-0">
+    <div className="min-h-screen bg-[#faf9f7] text-[#21201c] flex flex-col selection:bg-[#21201c] selection:text-white pb-20 lg:pb-0">
       
       {/* Navigation */}
       <Navbar
@@ -237,6 +239,7 @@ export function App() {
         onSwitchMode={handleSwitchMode}
         accent={currentAccent}
         onSwitchAccent={handleSwitchAccent}
+        onOpenMenuDrawer={() => setIsMenuDrawerOpen(true)}
       />
 
       {/* Main Content */}
@@ -447,6 +450,20 @@ export function App() {
         activeTab={activeTab}
         onNavigate={setActiveTab}
         unmasteredMistakes={(stats.mistakeBank || []).filter((m) => !m.resolved).length}
+        onOpenMenuDrawer={() => setIsMenuDrawerOpen(true)}
+      />
+
+      {/* Responsive Slide-over Module Drawer */}
+      <ModuleDrawer
+        isOpen={isMenuDrawerOpen}
+        onClose={() => setIsMenuDrawerOpen(false)}
+        activeTab={activeTab}
+        onSelectTab={setActiveTab}
+        mode={stats.mode}
+        onSwitchMode={handleSwitchMode}
+        accent={currentAccent}
+        onSwitchAccent={handleSwitchAccent}
+        stats={stats}
       />
 
     </div>

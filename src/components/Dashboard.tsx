@@ -1,4 +1,19 @@
 import React from 'react';
+import { 
+  Mic, 
+  PenTool, 
+  BookOpen, 
+  Headphones, 
+  Brain, 
+  Sparkles, 
+  RotateCcw, 
+  Layers, 
+  Radio, 
+  FileCheck2, 
+  Bookmark,
+  ArrowRight,
+  Sparkle
+} from 'lucide-react';
 import type { UserStats, SRSCard, BandScoreTarget } from '../types';
 
 interface DashboardProps {
@@ -66,126 +81,271 @@ export const Dashboard: React.FC<DashboardProps> = ({ stats, cards, onNavigate, 
         <div className="flex flex-col sm:flex-row gap-2 pt-2">
           <button
             onClick={() => onNavigate('study_srs')}
-            className="w-full sm:w-auto px-5 py-2.5 bg-[#21201c] hover:bg-[#383630] text-[#faf9f7] rounded-md text-xs font-semibold transition-colors text-center"
+            className="w-full sm:w-auto px-5 py-2.5 bg-[#21201c] hover:bg-[#383630] text-[#faf9f7] rounded-md text-xs font-semibold transition-colors text-center cursor-pointer shadow-2xs"
           >
             Start Vocabulary Session
           </button>
           <button
-            onClick={() => onNavigate('grammar')}
-            className="w-full sm:w-auto px-5 py-2.5 bg-white hover:bg-[#f4f2ee] border border-[#e8e6e1] text-[#21201c] rounded-md text-xs font-semibold transition-colors text-center"
+            onClick={() => onNavigate('speaking')}
+            className="w-full sm:w-auto px-5 py-2.5 bg-white hover:bg-[#f4f2ee] border border-[#e8e6e1] text-[#21201c] rounded-md text-xs font-semibold transition-colors text-center cursor-pointer"
           >
-            Practice Grammar Rules
+            Practice Speaking Studio
           </button>
         </div>
       </div>
 
-      {/* Module Overview Tracks */}
-      <div className="space-y-4">
-        <h2 className="text-sm font-bold text-[#21201c] uppercase tracking-wide">
-          Learning Modules
-        </h2>
+      {/* SECTION 1: 4 Core IELTS Subtests */}
+      <div className="space-y-3">
+        <div className="flex items-center justify-between">
+          <div>
+            <h2 className="text-sm font-bold text-[#21201c] uppercase tracking-wide">
+              4 Core IELTS Modules
+            </h2>
+            <p className="text-xs text-[#6b675e]">Sub-tes resmi IELTS Academic dengan simulasi interaktif</p>
+          </div>
+          <span className="text-[10px] font-mono-code bg-[#f0ede6] px-2 py-0.5 rounded text-[#21201c]">
+            Target Band {stats.targetBand}
+          </span>
+        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
           
-          <div
-            onClick={() => onNavigate('daily_talk')}
-            className="clean-surface p-5 cursor-pointer hover:border-[#b0aca2] transition-colors space-y-2 border-[#21201c]/30"
-          >
-            <div className="flex items-center justify-between">
-              <span className="text-[10px] font-mono-code text-[#c97a3e] uppercase font-bold">Fitur Percakapan Nyata</span>
-              <span className="text-[10px] font-mono-code bg-[#fdf5eb] px-2 py-0.5 rounded text-[#c97a3e] font-semibold">Bahasa Gaul & Native</span>
-            </div>
-            <h3 className="text-base font-bold text-[#21201c]">Ngobrol Sehari-hari (Daily English)</h3>
-            <p className="text-xs text-[#6b675e] leading-relaxed">
-              Latihan ngobrol santai dengan bule: small talk, pesan kafe/restoran, traveling, arah jalan, dan berteman akrab.
-            </p>
-          </div>
-
-          <div
-            onClick={() => onNavigate('study_srs')}
-            className="clean-surface p-5 cursor-pointer hover:border-[#b0aca2] transition-colors space-y-2"
-          >
-            <div className="flex items-center justify-between">
-              <span className="text-[10px] font-mono-code text-[#6b675e] uppercase">Module 01</span>
-              <span className="text-[10px] font-mono-code bg-[#f0ede6] px-2 py-0.5 rounded text-[#21201c]">Spaced Repetition</span>
-            </div>
-            <h3 className="text-base font-semibold text-[#21201c]">Vocabulary Decks (A1 to C1)</h3>
-            <p className="text-xs text-[#6b675e] leading-relaxed">
-              Foundational verbs, B2 bridge words, Academic Word List (AWL), and high-frequency academic collocations.
-            </p>
-          </div>
-
-          <div
-            onClick={() => onNavigate('paraphrase')}
-            className="clean-surface p-5 cursor-pointer hover:border-[#b0aca2] transition-colors space-y-2"
-          >
-            <div className="flex items-center justify-between">
-              <span className="text-[10px] font-mono-code text-[#6b675e] uppercase">Module 02</span>
-              <span className="text-[10px] font-mono-code bg-[#f0ede6] px-2 py-0.5 rounded text-[#21201c]">Sentence Transformation</span>
-            </div>
-            <h3 className="text-base font-semibold text-[#21201c]">Paraphrase Studio</h3>
-            <p className="text-xs text-[#6b675e] leading-relaxed">
-              Train sentence transformation, nominalisation, and high-band active/passive reformulation.
-            </p>
-          </div>
-
-          <div
-            onClick={() => onNavigate('grammar')}
-            className="clean-surface p-5 cursor-pointer hover:border-[#b0aca2] transition-colors space-y-2"
-          >
-            <div className="flex items-center justify-between">
-              <span className="text-[10px] font-mono-code text-[#6b675e] uppercase">Module 03</span>
-              <span className="text-[10px] font-mono-code bg-[#f0ede6] px-2 py-0.5 rounded text-[#21201c]">Grammar Engine</span>
-            </div>
-            <h3 className="text-base font-semibold text-[#21201c]">Sentence Structure & Inversion</h3>
-            <p className="text-xs text-[#6b675e] leading-relaxed">
-              Conjunctions and compound sentences (A2) up to negative inversions and cleft sentences (C1).
-            </p>
-          </div>
-
-          <div
-            onClick={() => onNavigate('writing')}
-            className="clean-surface p-5 cursor-pointer hover:border-[#b0aca2] transition-colors space-y-2"
-          >
-            <div className="flex items-center justify-between">
-              <span className="text-[10px] font-mono-code text-[#6b675e] uppercase">Module 04</span>
-              <span className="text-[10px] font-mono-code bg-[#f0ede6] px-2 py-0.5 rounded text-[#21201c]">Writing Lab</span>
-            </div>
-            <h3 className="text-base font-semibold text-[#21201c]">Academic Writing Tasks 1 & 2</h3>
-            <p className="text-xs text-[#6b675e] leading-relaxed">
-              Timed writing environment with word count checks, C1 vocabulary validation, and model answers.
-            </p>
-          </div>
-
+          {/* Speaking */}
           <div
             onClick={() => onNavigate('speaking')}
-            className="clean-surface p-5 cursor-pointer hover:border-[#b0aca2] transition-colors space-y-2"
+            className="clean-surface p-4 sm:p-5 cursor-pointer hover:border-[#21201c] hover:shadow-xs transition-all space-y-2 group"
           >
             <div className="flex items-center justify-between">
-              <span className="text-[10px] font-mono-code text-[#6b675e] uppercase">Module 05</span>
-              <span className="text-[10px] font-mono-code bg-[#f0ede6] px-2 py-0.5 rounded text-[#21201c]">Speaking Studio</span>
+              <div className="p-2 rounded-lg bg-[#e0e7ff] text-[#3730a3]">
+                <Mic className="w-4 h-4" />
+              </div>
+              <span className="text-[10px] font-mono-code text-[#6b675e] group-hover:translate-x-0.5 transition-transform flex items-center gap-0.5">
+                Buka <ArrowRight className="w-3 h-3 inline" />
+              </span>
             </div>
-            <h3 className="text-base font-semibold text-[#21201c]">Cue Card & Fluency Practice</h3>
-            <p className="text-xs text-[#6b675e] leading-relaxed">
-              Timed 1-minute preparation and 2-minute speech delivery with discourse markers and live speech recognition.
+            <h3 className="text-sm sm:text-base font-bold text-[#21201c]">Speaking Lab</h3>
+            <p className="text-xs text-[#6b675e] leading-relaxed line-clamp-3">
+              Simulasi Part 1-3 dengan timer persiapan 1 menit & delivery 2 menit, waveform suara, dan deteksi diskursus.
             </p>
           </div>
 
+          {/* Writing */}
           <div
-            onClick={() => onNavigate('reading')}
-            className="clean-surface p-5 cursor-pointer hover:border-[#b0aca2] transition-colors space-y-2"
+            onClick={() => onNavigate('writing')}
+            className="clean-surface p-4 sm:p-5 cursor-pointer hover:border-[#21201c] hover:shadow-xs transition-all space-y-2 group"
           >
             <div className="flex items-center justify-between">
-              <span className="text-[10px] font-mono-code text-[#6b675e] uppercase">Module 06</span>
-              <span className="text-[10px] font-mono-code bg-[#f0ede6] px-2 py-0.5 rounded text-[#21201c]">Reading Engine</span>
+              <div className="p-2 rounded-lg bg-[#fef3c7] text-[#92400e]">
+                <PenTool className="w-4 h-4" />
+              </div>
+              <span className="text-[10px] font-mono-code text-[#6b675e] group-hover:translate-x-0.5 transition-transform flex items-center gap-0.5">
+                Buka <ArrowRight className="w-3 h-3 inline" />
+              </span>
             </div>
-            <h3 className="text-base font-semibold text-[#21201c]">Academic Texts & Questions</h3>
-            <p className="text-xs text-[#6b675e] leading-relaxed">
-              Scientific journal passages with paragraph reference locators and structured reading comprehension.
+            <h3 className="text-sm sm:text-base font-bold text-[#21201c]">Writing Lab</h3>
+            <p className="text-xs text-[#6b675e] leading-relaxed line-clamp-3">
+              Academic Task 1 & Task 2 drafting dengan target 150/250 kata, validasi kosakata C1, dan model essays.
+            </p>
+          </div>
+
+          {/* Reading */}
+          <div
+            onClick={() => onNavigate('reading')}
+            className="clean-surface p-4 sm:p-5 cursor-pointer hover:border-[#21201c] hover:shadow-xs transition-all space-y-2 group"
+          >
+            <div className="flex items-center justify-between">
+              <div className="p-2 rounded-lg bg-[#dcfce7] text-[#166534]">
+                <BookOpen className="w-4 h-4" />
+              </div>
+              <span className="text-[10px] font-mono-code text-[#6b675e] group-hover:translate-x-0.5 transition-transform flex items-center gap-0.5">
+                Buka <ArrowRight className="w-3 h-3 inline" />
+              </span>
+            </div>
+            <h3 className="text-sm sm:text-base font-bold text-[#21201c]">Reading Lab</h3>
+            <p className="text-xs text-[#6b675e] leading-relaxed line-clamp-3">
+              Passage akademik berstandar jurnal ilmiah dengan timer 20 menit per bagian dan locator referensi paragraf.
+            </p>
+          </div>
+
+          {/* Listening */}
+          <div
+            onClick={() => onNavigate('listening')}
+            className="clean-surface p-4 sm:p-5 cursor-pointer hover:border-[#21201c] hover:shadow-xs transition-all space-y-2 group"
+          >
+            <div className="flex items-center justify-between">
+              <div className="p-2 rounded-lg bg-[#fce7f3] text-[#9d174d]">
+                <Headphones className="w-4 h-4" />
+              </div>
+              <span className="text-[10px] font-mono-code text-[#6b675e] group-hover:translate-x-0.5 transition-transform flex items-center gap-0.5">
+                Buka <ArrowRight className="w-3 h-3 inline" />
+              </span>
+            </div>
+            <h3 className="text-sm sm:text-base font-bold text-[#21201c]">Listening Lab</h3>
+            <p className="text-xs text-[#6b675e] leading-relaxed line-clamp-3">
+              Section 4 audio dictation dengan pengatur kecepatan (0.75x–1.0x) dan evaluasi ejaan kata transkrip.
             </p>
           </div>
 
         </div>
+      </div>
+
+      {/* SECTION 2: Vocabulary & Daily Expression */}
+      <div className="space-y-3">
+        <h2 className="text-sm font-bold text-[#21201c] uppercase tracking-wide">
+          Vocabulary & Retention Decks
+        </h2>
+
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
+          
+          <div
+            onClick={() => onNavigate('study_srs')}
+            className="clean-surface p-4 sm:p-5 cursor-pointer hover:border-[#21201c] hover:shadow-xs transition-all space-y-2"
+          >
+            <div className="flex items-center justify-between">
+              <div className="p-2 rounded-lg bg-[#f0ede6] text-[#21201c]">
+                <Brain className="w-4 h-4" />
+              </div>
+              <span className="text-[10px] font-mono-code bg-[#f0ede6] px-2 py-0.5 rounded text-[#21201c]">SRS System</span>
+            </div>
+            <h3 className="text-sm sm:text-base font-bold text-[#21201c]">SRS Lexicon (A1–C1)</h3>
+            <p className="text-xs text-[#6b675e] leading-relaxed">
+              Flashcard interaktif dengan kurva interval pengulangan cerdas, kolokasi akademis, dan level CEFR.
+            </p>
+          </div>
+
+          <div
+            onClick={() => onNavigate('daily_expression')}
+            className="clean-surface p-4 sm:p-5 cursor-pointer hover:border-[#21201c] hover:shadow-xs transition-all space-y-2"
+          >
+            <div className="flex items-center justify-between">
+              <div className="p-2 rounded-lg bg-[#fef3c7] text-[#92400e]">
+                <Sparkles className="w-4 h-4" />
+              </div>
+              <span className="text-[10px] font-mono-code bg-[#fef3c7] px-2 py-0.5 rounded text-[#92400e]">Harian</span>
+            </div>
+            <h3 className="text-sm sm:text-base font-bold text-[#21201c]">Word of the Day</h3>
+            <p className="text-xs text-[#6b675e] leading-relaxed">
+              Idiom dan frasa akademis terpilih setiap hari lengkap dengan audio aksen, konteks kalimat, dan arti.
+            </p>
+          </div>
+
+          <div
+            onClick={() => onNavigate('starred')}
+            className="clean-surface p-4 sm:p-5 cursor-pointer hover:border-[#21201c] hover:shadow-xs transition-all space-y-2"
+          >
+            <div className="flex items-center justify-between">
+              <div className="p-2 rounded-lg bg-[#e0e7ff] text-[#3730a3]">
+                <Bookmark className="w-4 h-4" />
+              </div>
+              <span className="text-[10px] font-mono-code bg-[#e0e7ff] px-2 py-0.5 rounded text-[#3730a3]">
+                {(stats.starredWords || []).length} Tersimpan
+              </span>
+            </div>
+            <h3 className="text-sm sm:text-base font-bold text-[#21201c]">Saved Bookmarks</h3>
+            <p className="text-xs text-[#6b675e] leading-relaxed">
+              Koleksi kosakata yang Anda tandai bintang untuk ditinjau secara terfokus sebelum ujian.
+            </p>
+          </div>
+
+        </div>
+      </div>
+
+      {/* SECTION 3: Practice Labs */}
+      <div className="space-y-3">
+        <h2 className="text-sm font-bold text-[#21201c] uppercase tracking-wide">
+          Practice & Fluency Labs
+        </h2>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+          
+          {/* Grammar Lab */}
+          <div
+            onClick={() => onNavigate('grammar')}
+            className="clean-surface p-4 sm:p-5 cursor-pointer hover:border-[#21201c] hover:shadow-xs transition-all space-y-2"
+          >
+            <div className="flex items-center justify-between">
+              <div className="p-2 rounded-lg bg-[#f0ede6] text-[#21201c]">
+                <FileCheck2 className="w-4 h-4" />
+              </div>
+              <span className="text-[10px] font-mono-code text-[#6b675e]">Band 7+</span>
+            </div>
+            <h3 className="text-sm sm:text-base font-bold text-[#21201c]">Grammar Lab</h3>
+            <p className="text-xs text-[#6b675e] leading-relaxed">
+              Inversi negatif, cleft sentences, dan variasi klausa kompleks untuk mendongkrak skor grammatical range.
+            </p>
+          </div>
+
+          {/* Paraphrase Studio */}
+          <div
+            onClick={() => onNavigate('paraphrase')}
+            className="clean-surface p-4 sm:p-5 cursor-pointer hover:border-[#21201c] hover:shadow-xs transition-all space-y-2"
+          >
+            <div className="flex items-center justify-between">
+              <div className="p-2 rounded-lg bg-[#f0ede6] text-[#21201c]">
+                <RotateCcw className="w-4 h-4" />
+              </div>
+              <span className="text-[10px] font-mono-code text-[#6b675e]">Lexical</span>
+            </div>
+            <h3 className="text-sm sm:text-base font-bold text-[#21201c]">Paraphrase Studio</h3>
+            <p className="text-xs text-[#6b675e] leading-relaxed">
+              Latihan reformulasi kalimat akademik dan nominalisasi untuk menghindari repetisi pada Writing.
+            </p>
+          </div>
+
+          {/* Shadowing Studio */}
+          <div
+            onClick={() => onNavigate('shadowing')}
+            className="clean-surface p-4 sm:p-5 cursor-pointer hover:border-[#21201c] hover:shadow-xs transition-all space-y-2"
+          >
+            <div className="flex items-center justify-between">
+              <div className="p-2 rounded-lg bg-[#f0ede6] text-[#21201c]">
+                <Radio className="w-4 h-4" />
+              </div>
+              <span className="text-[10px] font-mono-code text-[#6b675e]">Intonation</span>
+            </div>
+            <h3 className="text-sm sm:text-base font-bold text-[#21201c]">Shadowing Studio</h3>
+            <p className="text-xs text-[#6b675e] leading-relaxed">
+              Meniru pelafalan dan ritme penutur asli untuk meningkatkan aksen, kejelasan, dan kelancaran berbicara.
+            </p>
+          </div>
+
+          {/* Sentence Builder */}
+          <div
+            onClick={() => onNavigate('sentence_builder')}
+            className="clean-surface p-4 sm:p-5 cursor-pointer hover:border-[#21201c] hover:shadow-xs transition-all space-y-2"
+          >
+            <div className="flex items-center justify-between">
+              <div className="p-2 rounded-lg bg-[#f0ede6] text-[#21201c]">
+                <Layers className="w-4 h-4" />
+              </div>
+              <span className="text-[10px] font-mono-code text-[#6b675e]">Interactive</span>
+            </div>
+            <h3 className="text-sm sm:text-base font-bold text-[#21201c]">Sentence Builder</h3>
+            <p className="text-xs text-[#6b675e] leading-relaxed">
+              Puzzle susun kata dan klausa bertingkat untuk melatih insting tata bahasa Inggris yang presisi.
+            </p>
+          </div>
+
+        </div>
+      </div>
+
+      {/* Optional Daily English Callout Card */}
+      <div className="p-4 sm:p-5 rounded-xl border border-[#e8e6e1] bg-gradient-to-r from-[#f7f5f0] to-[#ffffff] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-2xs">
+        <div className="space-y-1">
+          <div className="flex items-center gap-1.5 text-xs font-bold text-[#21201c]">
+            <Sparkle className="w-4 h-4 text-[#c97a3e]" />
+            <span>Ingin Latihan Percakapan Santai Sehari-hari?</span>
+          </div>
+          <p className="text-xs text-[#6b675e]">
+            Tersedia mode <strong className="text-[#21201c]">Daily English</strong> dengan Quest Map bertahap, simulasi dialog kafe/bandara, dan AI chat roleplay.
+          </p>
+        </div>
+        <button
+          onClick={() => onNavigate('daily_quest')}
+          className="px-4 py-2 bg-[#21201c] hover:bg-[#383630] text-white text-xs font-semibold rounded-lg shrink-0 cursor-pointer shadow-2xs"
+        >
+          Lihat Daily English
+        </button>
       </div>
 
     </div>
