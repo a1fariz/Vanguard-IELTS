@@ -130,3 +130,7 @@ ielts/
 - Alfa Rizi
 - GitHub: https://github.com/a1fariz
 - Portfolio: https://alfarizi.my.id
+
+---
+
+[Portfolio Alfa Rizi](https://alfarizi.my.id) · [GitHub profile](https://github.com/a1fariz) · [Contact](mailto:alfarizi.developer@gmail.com)
